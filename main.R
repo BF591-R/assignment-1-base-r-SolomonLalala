@@ -154,8 +154,8 @@ summarize_matrix <- function(x, na.rm=FALSE) {
       median = median(row), 
       min = min(row), 
       max = max(row), 
-      num_lt_0 = sum(row < 0), 
-      num_btw_1_and_5 = sum(1 < row & row < 5), 
+      num_lt_0 = sum(less_than_zero(row)), 
+      num_btw_1_and_5 = sum(is_between(row, 1, 5)), 
       num_na =sum(is.na(row)))
   }
   
