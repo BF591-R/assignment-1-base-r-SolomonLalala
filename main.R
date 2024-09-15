@@ -145,9 +145,9 @@ summarize_rows <- function(x, fn, na.rm=FALSE) {
 #' 3 -0.09040182 1.027559 -0.02774705 -3.026888 2.353087      130              54      0
 #' 4  0.09518138 1.030461  0.11294781 -3.409049 2.544992       90              72      0
 
-#ignore NA value by default
+
 summarize_matrix <- function(x, na.rm=FALSE) {
-  #pass na.rm to inner function
+
   row_stats <- function(row, na.rm=FALSE){
     c(
       mean = mean(row), 
