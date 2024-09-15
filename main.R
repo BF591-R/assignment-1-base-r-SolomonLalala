@@ -144,8 +144,26 @@ summarize_rows <- function(x, fn, na.rm=FALSE) {
 #' 2 -0.01574033 1.026951 -0.04725656 -2.967057 2.571608      112              70      0
 #' 3 -0.09040182 1.027559 -0.02774705 -3.026888 2.353087      130              54      0
 #' 4  0.09518138 1.030461  0.11294781 -3.409049 2.544992       90              72      0
+
 summarize_matrix <- function(x, na.rm=FALSE) {
-    return(NULL)
+  
+  row_stats <- function(row, na.rm=FALSE){
+    c(
+      mean = mean(row), 
+      stdev = sd(row), 
+      median = median(row), 
+      min = min(row), 
+      max = max(row), 
+      num_lt_0 = sum(row < 0), 
+      num_btw_1_and_5 = sum(1 < row & row < 5), 
+      num_na =sum(is.na(row)))
+  }
+  
+  matrix_summary = apply(x, 1, row_stats)
+  transposed_matrix_summary = t(matrix_summary)
+  summary_in_dataframe <- as.data.frame(transposed_matrix_summary)
+  
+  return(summary_in_dataframe)
 }
 
 # ------------ Helper Functions Used By Assignment, You May Ignore ------------
